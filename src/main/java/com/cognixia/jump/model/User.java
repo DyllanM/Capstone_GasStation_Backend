@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User implements Serializable{
@@ -27,7 +29,12 @@ public class User implements Serializable{
 	@Column(unique = true, nullable = false)
 	private String username;
 
+	
+	//password should not be null or empty
+
 	@Column(nullable = false)
+	@NotEmpty
+	@Size(min = 4, message = "password should have at least 4 charaters")
 	private String password;
 
 	@Enumerated(EnumType.STRING)

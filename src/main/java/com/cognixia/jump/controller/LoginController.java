@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +61,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws Exception {
+	public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody AuthenticationRequest request) throws Exception {
 		
 		try {
 			
@@ -82,7 +84,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<?> createNewUser(@RequestBody AuthenticationRequest newUser)
+	public ResponseEntity<?> createNewUser(@Valid @RequestBody AuthenticationRequest newUser)
 	{
 		Optional<User> isAlreadyRegistered = userRepo.findByUsername(newUser.getUsername());
 		
